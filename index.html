@@ -16,88 +16,30 @@
     <div id="session" class="session"></div>
   </div>
 </header>
-
 <main>
-  <div class="topbar">
-    <div class="workspaceBox">
-      <label>Espaço Workplace</label>
-      <select id="workspaceSelect" onchange="changeWorkspace()">
-        <option value="mg2">Workplace MG2</option>
-        <option value="criacao">Prédio de Criação</option>
-      </select>
-    </div>
-  </div>
-
+  <div class="topbar"><div class="workspaceBox"><label>Espaço Workplace</label><select id="workspaceSelect" onchange="changeWorkspace()"><option value="mg2">Workplace MG2</option><option value="criacao">Prédio de Criação</option></select></div></div>
   <div class="nav">
     <button class="blue" onclick="show('stock')">📦 Estoque</button>
     <button class="green" onclick="requireLogin('entry')">➕ Entrada</button>
     <button class="red" onclick="requireLogin('exit')">➖ Saída</button>
     <button class="blue" onclick="openLogin()">🔐 Login</button>
   </div>
-
   <section id="stock">
-    <div class="card">
-      <h2>Estoque disponível — <span class="titleWorkspace" id="stockWorkspace">Workplace MG2</span></h2>
-      <div class="muted">Qualquer pessoa com o link pode consultar os dois estoques. Entrada e saída exigem login do respectivo espaço.</div>
-    </div>
-    <div class="stats">
-      <div class="stat"><span>Itens disponíveis</span><b id="total">0</b></div>
-      <div class="stat"><span>Tipos</span><b id="types">0</b></div>
-      <div class="stat"><span>Atualização</span><b id="updated" style="font-size:16px">—</b></div>
-    </div>
-    <div class="card">
-      <div class="filters">
-        <input id="search" placeholder="Pesquisar ativo, equipamento, colaborador ou chamado..." oninput="render()">
-        <select id="filter" onchange="render()"><option value="">Todos os equipamentos</option></select>
-      </div>
-      <div id="table"></div>
-    </div>
+    <div class="card"><h2>Estoque disponível — <span class="titleWorkspace" id="stockWorkspace">Workplace MG2</span></h2><div class="muted">Qualquer pessoa com o link pode consultar os dois estoques. Entrada e saída exigem login do respectivo espaço.</div></div>
+    <div class="stats"><div class="stat"><span>Itens disponíveis</span><b id="total">0</b></div><div class="stat"><span>Tipos</span><b id="types">0</b></div><div class="stat"><span>Atualização</span><b id="updated" style="font-size:16px">—</b></div></div>
+    <div class="card"><div class="filters"><input id="search" placeholder="Pesquisar ativo, equipamento, colaborador ou chamado..." oninput="render()"><select id="filter" onchange="render()"><option value="">Todos os equipamentos</option></select></div><div id="table"></div></div>
   </section>
-
-  <section id="entry">
-    <div class="card">
-      <h2>➕ Registrar entrada</h2>
-      <div class="autoInfo">Espaço selecionado: <b id="entryWorkspace"></b></div>
-      <div class="grid">
-        <div><label>Chamado</label><input id="ec" oninput="this.value=this.value.toUpperCase()"></div>
-        <div><label>Equipamento</label><input id="ee" placeholder="Ex.: Notebook, Monitor, Celular" oninput="this.value=this.value.trimStart()"></div>
-        <div><label>Ativo</label><input id="ea" oninput="this.value=this.value.toUpperCase()"></div>
-        <div><label>Colaborador</label><input id="ecol"></div>
-        <div><label>Técnico responsável</label><input id="et"></div>
-      </div>
-      <label class="check"><input type="checkbox" id="ecarregador"><span>🔌 Equipamento está com carregador</span></label>
-      <div id="chipWrap" class="subcard hidden">
-        <label class="check" style="margin-top:0"><input type="checkbox" id="echip" onchange="chipChanged()"><span>📱 Celular está com chip?</span></label>
-        <div id="lineWrap" class="hidden"><label>Número da linha do chip</label><input id="elinha" type="tel" inputmode="tel" placeholder="Ex.: (31) 99999-9999"></div>
-      </div>
-      <div class="actions"><button class="green" onclick="move('entrada')">Registrar entrada</button><button onclick="show('stock')">Cancelar</button></div>
-      <div id="emsg" class="msg"></div>
-    </div>
-  </section>
-
-  <section id="exit">
-    <div class="card">
-      <h2>➖ Registrar saída</h2>
-      <div class="autoInfo">Espaço selecionado: <b id="exitWorkspace"></b></div>
-      <div class="muted">Digite o número do ativo. Os dados da entrada, carregador e chip serão reconhecidos automaticamente.</div>
-      <div class="grid">
-        <div><label>Chamado da entrada</label><input id="sc" readonly></div>
-        <div><label>Ativo</label><input id="sa" list="alist" placeholder="Digite o número do ativo" oninput="this.value=this.value.toUpperCase();fillExitFromAsset()"><datalist id="alist"></datalist></div>
-        <div><label>🔌 Carregador</label><label class="check"><input type="checkbox" id="scarregador" disabled><span id="chargerText">Aguardando ativo...</span></label></div>
-        <div><label>Equipamento</label><input id="se" readonly></div>
-        <div><label>📱 Chip</label><input id="schip" readonly></div>
-        <div><label>📞 Linha do chip</label><input id="slinha" readonly></div>
-        <div><label>Colaborador da entrada</label><input id="scol" readonly></div>
-        <div><label>Técnico da entrada</label><input id="sent" readonly></div>
-        <div><label>Técnico responsável pela saída</label><input id="st" placeholder="Ex.: Guilherme"></div>
-      </div>
-      <div id="autoInfo" class="autoInfo">Aguardando o número do ativo...</div>
-      <div class="actions"><button class="red" onclick="move('saida')">Registrar saída</button><button onclick="show('stock')">Cancelar</button></div>
-      <div id="smsg" class="msg"></div>
-    </div>
-  </section>
+  <section id="entry"><div class="card"><h2>➕ Registrar entrada</h2><div class="autoInfo">Espaço selecionado: <b id="entryWorkspace"></b></div><div class="grid">
+    <div><label>Chamado</label><input id="ec" oninput="this.value=this.value.toUpperCase()"></div><div><label>Equipamento</label><input id="ee" placeholder="Ex.: Notebook, Monitor, Celular" oninput="this.value=this.value.trimStart()"></div><div><label>Ativo</label><input id="ea" oninput="this.value=this.value.toUpperCase()"></div><div><label>Colaborador</label><input id="ecol"></div><div><label>Técnico responsável</label><input id="et"></div>
+  </div><label class="check"><input type="checkbox" id="ecarregador"><span>🔌 Equipamento está com carregador</span></label><div id="chipWrap" class="subcard hidden"><label class="check" style="margin-top:0"><input type="checkbox" id="echip" onchange="chipChanged()"><span>📱 Celular está com chip?</span></label><div id="lineWrap" class="hidden"><label>Número da linha do chip</label><input id="elinha" type="tel" inputmode="tel" placeholder="Ex.: (31) 99999-9999"></div></div><div class="actions"><button class="green" onclick="move('entrada')">Registrar entrada</button><button onclick="show('stock')">Cancelar</button></div><div id="emsg" class="msg"></div></div></section>
+  <section id="exit"><div class="card"><h2>➖ Registrar saída</h2><div class="autoInfo">Espaço selecionado: <b id="exitWorkspace"></b></div><div class="muted">Digite o número do ativo. Os dados da entrada, carregador e chip serão reconhecidos automaticamente.</div><div class="grid">
+    <div><label>Chamado da entrada</label><input id="sc" readonly></div><div><label>Ativo</label><input id="sa" list="alist" placeholder="Digite o número do ativo" oninput="this.value=this.value.toUpperCase();fillExitFromAsset()"><datalist id="alist"></datalist></div><div><label>🔌 Carregador</label><label class="check"><input type="checkbox" id="scarregador" disabled><span id="chargerText">Aguardando ativo...</span></label></div><div><label>Equipamento</label><input id="se" readonly></div><div><label>📱 Chip</label><input id="schip" readonly></div><div><label>📞 Linha do chip</label><input id="slinha" readonly></div><div><label>Colaborador da entrada</label><input id="scol" readonly></div><div><label>Técnico da entrada</label><input id="sent" readonly></div><div><label>Técnico responsável pela saída</label><input id="st" placeholder="Ex.: Guilherme"></div>
+  </div><div id="autoInfo" class="autoInfo">Aguardando o número do ativo...</div><div class="actions"><button class="red" onclick="move('saida')">Registrar saída</button><button onclick="show('stock')">Cancelar</button></div><div id="smsg" class="msg"></div></div></section>
 </main>
-
+<script src="./assets/js/workspaces.js"></script>
+<script src="./assets/js/auth.js"></script>
+<script src="./assets/js/estoque.js"></script>
+<script src="./assets/js/movimentacoes.js"></script>
 <script src="./assets/js/app.js"></script>
 </body>
 </html>
