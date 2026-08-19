@@ -1,30 +1,18 @@
 const LOGIN_API='https://lozqdrqujouvjfflgasl.supabase.co/functions/v1/mg2-login';
 const SESSION_KEY='mg2_session_v3';
 
-function session(){
-  try{return JSON.parse(localStorage.getItem(SESSION_KEY)||'null')}catch{return null}
-}
-
-function isLogged(){
-  const s=session();
-  return !!(s&&s.access_token&&s.user&&s.user.active);
-}
+function session(){try{return JSON.parse(localStorage.getItem(SESSION_KEY)||'null')}catch{return null}}
+function isLogged(){const s=session();return !!(s&&s.access_token&&s.user&&s.user.active)}
 
 function updateSession(){
   const el=document.getElementById('session'),u=session();
   if(!el)return;
-  el.innerHTML=isLogged()
-    ? '<span>🔓 '+esc(u.user.username)+' • '+esc(WORKSPACES[u.user.workspace]||u.user.workspace)+'</span><button type="button" class="logout" id="logoutButton">Sair</button>'
-    : '';
+  el.innerHTML=isLogged()?'<span>🔓 '+esc(u.user.username)+' • '+esc(WORKSPACES[u.user.workspace]||u.user.workspace)+'</span><button type="button" class="logout" id="logoutButton">Sair</button>':'';
   if(isLogged())document.getElementById('logoutButton')?.addEventListener('click',logout);
 }
 
 function openLogin(){
-  if(isLogged()){
-    updateSession();
-    alert('A sessão já está ativa neste navegador.');
-    return;
-  }
+  if(isLogged()){updateSession();alert('A sessão já está ativa neste navegador.');return}
   pendingSection=null;
   showLogin();
 }
@@ -32,7 +20,7 @@ function openLogin(){
 function showLogin(){
   document.getElementById('loginModal')?.remove();
   document.body.insertAdjacentHTML('beforeend',`
-    <div id="loginModal" style="position:fixed;inset:0;background:rgba(0,0,0,.82);display:flex;align-items:center;justify-content:center;padding:20px;z-index:99">
+    <div id="loginModal" class="loginModal">
       <div class="card loginBox">
         <h2>🔐 Login</h2>
         <p class="muted">Informe seu usuário e senha para liberar entrada e saída do espaço Workplace.</p>
@@ -45,16 +33,14 @@ function showLogin(){
           <button type="button" class="blue" id="loginButton">Entrar</button>
           <button type="button" id="cancelLoginButton">Cancelar</button>
         </div>
-        <p class="muted" style="font-size:12px">A sessão permanece neste navegador até sair ou limpar os dados/cache do site.</p>
+        <p class="muted loginHint">A sessão permanece neste navegador até sair ou limpar os dados/cache do site.</p>
       </div>
     </div>`);
 
   const modal=document.getElementById('loginModal');
   document.getElementById('loginButton')?.addEventListener('click',login);
   document.getElementById('cancelLoginButton')?.addEventListener('click',()=>modal?.remove());
-  document.getElementById('loginPass')?.addEventListener('keydown',e=>{
-    if(e.key==='Enter')login();
-  });
+  document.getElementById('loginPass')?.addEventListener('keydown',e=>{if(e.key==='Enter')login()});
   setTimeout(()=>document.getElementById('loginUser')?.focus(),50);
 }
 
@@ -77,18 +63,11 @@ async function login(){
     updateWorkspaceUI();
     updateSession();
     if(pendingSection)show(pendingSection);else show('stock');
-  }catch(err){
-    e.textContent=err.message;
-    e.style.display='block';
-  }
+  }catch(err){e.textContent=err.message;e.style.display='block'}
 }
 
 function requireLogin(section){
-  if(!isLogged()){
-    pendingSection=section;
-    showLogin();
-    return;
-  }
+  if(!isLogged()){pendingSection=section;showLogin();return}
   const u=session().user;
   if(u.workspace!==currentWorkspace){
     alert('Este login pertence ao '+(WORKSPACES[u.workspace]||u.workspace)+'. Selecione esse espaço para registrar movimentações.');
@@ -99,8 +78,4 @@ function requireLogin(section){
   show(section);
 }
 
-function logout(){
-  localStorage.removeItem(SESSION_KEY);
-  updateSession();
-  show('stock');
-}
+function logout(){localStorage.removeItem(SESSION_KEY);updateSession();show('stock')}
