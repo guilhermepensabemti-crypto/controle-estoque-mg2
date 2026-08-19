@@ -8,8 +8,8 @@
 </head>
 <body>
 <header>
-  <div style="display:flex;align-items:center;gap:15px;flex-wrap:wrap">
-    <div>
+  <div class="headerInner">
+    <div class="headerText">
       <h1>Controle de Estoque — <span id="headerWorkspace">Workplace MG2</span></h1>
       <p>Consulta pública • movimentações protegidas por login</p>
     </div>
@@ -42,7 +42,7 @@
     <div class="stats">
       <div class="stat"><span>Itens disponíveis</span><b id="total">0</b></div>
       <div class="stat"><span>Tipos</span><b id="types">0</b></div>
-      <div class="stat"><span>Atualização</span><b id="updated" style="font-size:16px">—</b></div>
+      <div class="stat"><span>Atualização</span><b id="updated">—</b></div>
     </div>
     <div class="card">
       <div class="filters">
@@ -66,7 +66,7 @@
       </div>
       <label class="check"><input type="checkbox" id="ecarregador"><span>🔌 Equipamento está com carregador</span></label>
       <div id="chipWrap" class="subcard hidden">
-        <label class="check" style="margin-top:0"><input type="checkbox" id="echip"><span>📱 Celular está com chip?</span></label>
+        <label class="check"><input type="checkbox" id="echip"><span>📱 Celular está com chip?</span></label>
         <div id="lineWrap" class="hidden">
           <label for="elinha">Número da linha do chip</label>
           <input id="elinha" type="tel" inputmode="tel" placeholder="Ex.: (31) 99999-9999">
