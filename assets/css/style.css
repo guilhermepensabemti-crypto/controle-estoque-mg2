@@ -2,6 +2,8 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--txt);font:14px Arial,sans-serif}
 header{padding:22px 24px;background:#050812;border-bottom:1px solid var(--line)}
+.headerInner{display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+.headerText{min-width:0}
 h1{margin:0;font-size:22px}
 header p{color:var(--muted);margin:7px 0 0}
 main{max-width:1150px;margin:22px auto;padding:0 16px}
@@ -39,6 +41,8 @@ section{display:none}#stock{display:block}
 .session{margin-left:auto;color:#94a3b8;font-size:12px;display:flex;align-items:center;gap:8px}
 .logout{padding:7px 10px;font-size:12px}
 .loginBox{width:min(420px,100%);margin:0}
+.loginModal{position:fixed;inset:0;background:rgba(0,0,0,.82);display:flex;align-items:center;justify-content:center;padding:20px;z-index:99}
+.loginHint{font-size:12px}
 .badge{display:inline-block;padding:5px 9px;border-radius:999px;background:#1e3a8a;color:#bfdbfe;font-size:12px;font-weight:700}
 .titleWorkspace{color:#93c5fd}
 @media(max-width:700px){.grid,.stats,.filters{grid-template-columns:1fr}.session,.workspaceBox{margin-left:0;width:100%}}
