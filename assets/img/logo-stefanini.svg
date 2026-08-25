@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-label="Stefanini">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#1261b5"/>
+    <stop offset="52%" stop-color="#073b78"/>
+    <stop offset="100%" stop-color="#00030a"/>
+  </linearGradient>
+  <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8fe8ff"/><stop offset="1" stop-color="#08a9e8"/></linearGradient>
+  <linearGradient id="lime" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d7ef18"/><stop offset="1" stop-color="#8cc900"/></linearGradient>
+</defs>
+<circle cx="160" cy="160" r="156" fill="url(#bg)"/>
+<g transform="translate(29 105) scale(.72)">
+  <path d="M52 0C28 9 11 27 4 50" fill="none" stroke="url(#cyan)" stroke-width="13" stroke-linecap="round"/>
+  <path d="M77 22C44 30 22 51 15 81" fill="none" stroke="url(#cyan)" stroke-width="22" stroke-linecap="round"/>
+  <path d="M99 53C59 59 37 82 34 116" fill="none" stroke="url(#lime)" stroke-width="25" stroke-linecap="round"/>
+  <path d="M116 87C80 91 60 111 61 140" fill="none" stroke="#2f70c9" stroke-width="25" stroke-linecap="round"/>
+  <path d="M130 121C101 124 88 140 90 161" fill="none" stroke="#11b9ed" stroke-width="24" stroke-linecap="round"/>
+</g>
+<text x="151" y="169" font-family="Arial, Helvetica, sans-serif" font-size="47" font-weight="700" fill="#fff" letter-spacing="-2">stefanini</text>
+<text x="160" y="198" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="500" fill="#d8dee8" letter-spacing="2.2">POWERING YOUR BUSINESS</text>
+</svg>
